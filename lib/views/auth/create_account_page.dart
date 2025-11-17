@@ -27,7 +27,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             children: [
               SizedBox(height: 60),
 
-              Image.asset("assets/image_signup.png"),
+              Image.asset("assets/images/image_signup.png"),
 
               SizedBox(height: 20),
 
