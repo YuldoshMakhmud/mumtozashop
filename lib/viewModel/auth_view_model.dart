@@ -1,5 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user_provider.dart';
 
 class AuthViewModel {
 
@@ -30,12 +34,14 @@ class AuthViewModel {
     }
   }
 
-  loginWithEmailAndPassword(String userEmail, String userPassword) async {
+  loginWithEmailAndPassword(String userEmail, String userPassword, BuildContext context) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: userEmail,
           password: userPassword
       );
+
+      Provider.of<UserProvider>(context, listen: false).getUserData();
 
       return "Login Successful";
     } on FirebaseAuthException catch (ecp) {
