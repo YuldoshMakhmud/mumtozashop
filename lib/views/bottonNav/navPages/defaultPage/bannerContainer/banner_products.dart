@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:mumtozashop/viewModel/common_view_model.dart';
 import 'package:mumtozashop/viewModel/product_view_model.dart';
 
 import '../../../../../models/product_model.dart';
@@ -17,6 +18,7 @@ class BannerProducts extends StatefulWidget {
 
 class _BannerProductsState extends State<BannerProducts> {
   ProductViewModel productViewModel = ProductViewModel();
+  CommonViewModel commonViewModel = CommonViewModel();
 
   // Color palette to randomly assign colors for categories
   final List<Color> _colorPalette = [
@@ -52,15 +54,6 @@ class _BannerProductsState extends State<BannerProducts> {
     return Text(quotes[random], style: const TextStyle(color: Colors.green));
   }
 
-  String getDiscountPercentage(int oldPrice, int currentPrice) {
-    if (oldPrice == 0) {
-      return "0";
-    } else {
-      double discount = ((oldPrice - currentPrice) / oldPrice) * 100;
-      return discount.toStringAsFixed(0);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -89,7 +82,8 @@ class _BannerProductsState extends State<BannerProducts> {
                     child: Row(
                       children: [
                         Text(
-                          "${widget.categoryName[0].toUpperCase()}${widget.categoryName.substring(1)}",
+                          //"${widget.categoryName[0].toUpperCase()}${widget.categoryName.substring(1)}",
+                          widget.categoryName,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w500,
@@ -97,7 +91,13 @@ class _BannerProductsState extends State<BannerProducts> {
                         ),
                         const Spacer(),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              "/show_specific_products",
+                              arguments: {"name": widget.categoryName},
+                            );
+                          },
                           icon: const Icon(Icons.chevron_right),
                         ),
                       ],
@@ -114,7 +114,13 @@ class _BannerProductsState extends State<BannerProducts> {
                       children: List.generate(
                         products.length > 4 ? 4 : products.length,
                         (i) => GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              "/product_details",
+                              arguments: products[i],
+                            );
+                          },
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * .43,
                             padding: const EdgeInsets.all(8),
@@ -145,7 +151,7 @@ class _BannerProductsState extends State<BannerProducts> {
                                 specialQuote(
                                   price: products[i].new_price_Product,
                                   discountPercentage: int.parse(
-                                    getDiscountPercentage(
+                                    commonViewModel.getDiscountPercentage(
                                       products[i].old_price_Product,
                                       products[i].new_price_Product,
                                     ),

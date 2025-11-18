@@ -35,7 +35,13 @@ class _PromoCarouselSliderContainerState
                 final imageBytes = base64Decode(promo.imagePromoBanner);
 
                 return GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      "/show_specific_products",
+                      arguments: {"name": promo.categoryPromoBanner},
+                    );
+                  },
                   child: Image.memory(
                     imageBytes,
                     fit: BoxFit.cover,

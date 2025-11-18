@@ -5,7 +5,7 @@ import 'package:mumtozashop/providers/user_provider.dart';
 import 'navPages/cart_page.dart';
 import 'navPages/default_page.dart';
 import 'navPages/orders_page.dart';
-import 'navPages/profile_page.dart';
+import 'navPages/profile/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

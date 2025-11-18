@@ -13,7 +13,9 @@ class BannerUi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, "/show_specific_products", arguments: {"name": category,});
+      },
       child: Container(
         margin: const EdgeInsets.all(8),
         height: 149,

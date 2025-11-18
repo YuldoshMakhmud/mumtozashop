@@ -28,7 +28,9 @@ class _CouponContainerState extends State<CouponContainer> {
           final coupon = couponsList[0];
 
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, "/coupons");
+            },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               padding: EdgeInsets.all(20),

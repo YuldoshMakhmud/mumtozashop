@@ -103,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        //Navigator.pushNamed(context, "/update_profile");
+                        Navigator.pushNamed(context, "/edit_profile");
                       },
                     ),
                   ],

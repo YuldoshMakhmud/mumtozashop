@@ -21,7 +21,9 @@ class _CategoryBtnState extends State<CategoryBtn> {
     final imageBytes = base64Decode(widget.imageBase64);
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, "/show_specific_products", arguments: {"name": widget.name,});
+      },
       child: Container(
         margin: const EdgeInsets.all(4),
         padding: const EdgeInsets.all(4),
