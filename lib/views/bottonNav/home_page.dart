@@ -30,29 +30,24 @@ class _HomePageState extends State<HomePage> {
             chosenIndex = index;
           });
         },
-
-        selectedItemColor: Color(0xFFFFF0F5),
+        selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
         showSelectedLabels: true,
         showUnselectedLabels: true,
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.home_outlined),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.local_shipping_outlined),
             label: "Orders",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.shopping_cart_outlined),
             label: "Cart",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.manage_accounts_outlined),
             label: "Profile",
           ),
