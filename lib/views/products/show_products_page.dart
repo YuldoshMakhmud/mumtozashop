@@ -28,6 +28,7 @@ class _ShowProductsPageState extends State<ShowProductsPage> {
           //cars = Cars
           //"${args["name"].substring(0, 1).toUpperCase()}${args["name"].substring(1)}",
           args["name"],
+          style: TextStyle(color: Colors.pinkAccent),
         ),
       ),
       body: StreamBuilder(
@@ -94,7 +95,7 @@ class _ShowProductsPageState extends State<ShowProductsPage> {
                             Row(
                               children: [
                                 Text(
-                                  "💲${product.old_price_Product}",
+                                  "${product.old_price_Product} UZS",
                                   style: TextStyle(
                                     fontSize: 13,
                                     decoration: TextDecoration.lineThrough,
@@ -103,7 +104,7 @@ class _ShowProductsPageState extends State<ShowProductsPage> {
                                 ),
                                 SizedBox(width: 6),
                                 Text(
-                                  "💲${product.new_price_Product}",
+                                  "${product.new_price_Product} UZS",
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,

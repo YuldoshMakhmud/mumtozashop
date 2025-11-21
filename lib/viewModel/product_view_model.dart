@@ -18,4 +18,11 @@ class ProductViewModel {
     return FirebaseFirestore.instance.collection("products").where("category", isEqualTo: categoryName.toLowerCase()).snapshots();
   }
 
+  reduceProductQuantity({required String productId, required int quantity}) async {
+    await FirebaseFirestore.instance
+        .collection("products")
+        .doc(productId)
+        .update({"quantity": FieldValue.increment(-quantity)});
+  }
+
 }

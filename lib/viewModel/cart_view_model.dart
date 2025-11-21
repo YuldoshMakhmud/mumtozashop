@@ -69,4 +69,17 @@ class CartViewModel {
         });
   }
 
+  clearCart() async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("cart")
+        .get()
+        .then((cartItem) {
+      for (DocumentSnapshot dSnapshot in cartItem.docs) {
+        dSnapshot.reference.delete();
+      }
+    });
+  }
+
 }

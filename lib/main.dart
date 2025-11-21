@@ -8,6 +8,8 @@ import 'package:mumtozashop/views/auth/create_account_page.dart';
 import 'package:mumtozashop/views/auth/login_page.dart';
 import 'package:mumtozashop/views/bottonNav/home_page.dart';
 import 'package:mumtozashop/views/bottonNav/navPages/cart_page.dart';
+import 'package:mumtozashop/views/bottonNav/navPages/orders/order_details_page.dart';
+import 'package:mumtozashop/views/bottonNav/navPages/orders/orders_page.dart';
 import 'package:mumtozashop/views/bottonNav/navPages/profile/edit_profile_page.dart';
 import 'package:mumtozashop/views/checkout/checkout_page.dart';
 import 'package:mumtozashop/views/coupons/coupons_page.dart';
@@ -16,6 +18,7 @@ import 'package:mumtozashop/views/products/show_products_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
 
   runApp(const MyApp());
@@ -32,11 +35,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CartProvider()),
       ],
       child: MaterialApp(
-        title: 'Snap & Shop eCommerce App',
+        title: 'Mumtoza shop',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'Couture',
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          fontFamily: 'Sen-VariableFont_wght',
+          colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFFFF0F5)),
           useMaterial3: true,
         ),
         routes: {
@@ -50,6 +53,8 @@ class MyApp extends StatelessWidget {
           "/cart": (context) => CartPage(),
           "/checkout": (context) => CheckoutPage(),
           "/edit_profile": (context) => EditProfilePage(),
+          "/orders": (context) => OrdersPage(),
+          "/order_details": (context) => OrderDetailsPage(),
         },
       ),
     );

@@ -17,10 +17,15 @@ class _DefaultPageState extends State<DefaultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFFDD5D79),
         title: Column(
           children: [
-            SizedBox(height: 20),
-            Image.asset("assets/images/icon.png", width: 130),
+            SizedBox(height: 5),
+            Image.asset(
+              "assets/images/icon.png",
+              width: 140,
+              color: Color(0xFFFFF5E1),
+            ),
           ],
         ),
         centerTitle: true,

@@ -22,7 +22,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     final args = ModalRoute.of(context)!.settings.arguments as ProductModel;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Product Details")),
+      appBar: AppBar(
+        title: Text(
+          "Product Details",
+          style: TextStyle(color: Colors.pinkAccent),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -47,7 +52,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       Icon(
                         Icons.shopping_bag_outlined,
                         size: 22,
-                        color: Colors.blue,
+                        color: Colors.pinkAccent,
                       ),
                       SizedBox(width: 6),
                       Expanded(
@@ -70,7 +75,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Row(
                     children: [
                       Text(
-                        "💲${args.old_price_Product}",
+                        "${args.old_price_Product} UZS",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -80,7 +85,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "💲${args.new_price_Product}",
+                        "${args.new_price_Product} UZS",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w800,
@@ -94,7 +99,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.pinkAccent,
                         ),
                       ),
                     ],
@@ -139,7 +144,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       Icon(
                         Icons.description_outlined,
                         size: 20,
-                        color: Colors.grey,
+                        color: Colors.pinkAccent,
                       ),
                       SizedBox(width: 6),
                       Expanded(
@@ -185,14 +190,14 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                             "Item Added to your cart.",
                             style: TextStyle(color: Colors.white),
                           ),
-                          backgroundColor: Colors.green,
+                          backgroundColor: Color(0xFFDD5D79),
                         ),
                       );
                     },
                     icon: const Icon(Icons.add_shopping_cart_outlined),
                     label: const Text("Add to Cart"),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.pinkAccent,
                       foregroundColor: Colors.white,
                       shape: const RoundedRectangleBorder(),
                     ),
@@ -216,7 +221,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     label: const Text("Buy Now"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white70,
-                      foregroundColor: Colors.green,
+                      foregroundColor: Colors.pinkAccent,
                       shape: const RoundedRectangleBorder(),
                     ),
                   ),

@@ -75,6 +75,7 @@ class _CartItemState extends State<CartItem> {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
+        color: Colors.white,
         width: double.infinity,
         padding: EdgeInsets.all(11),
         margin: EdgeInsets.all(11),
@@ -108,18 +109,18 @@ class _CartItemState extends State<CartItem> {
                         children: [
                           SizedBox(width: 2),
                           Text(
-                            "💲${widget.old_price_Product}",
+                            "${widget.old_price_Product} UZS",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 12,
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
                           SizedBox(width: 8),
                           Text(
-                            "💲${widget.new_price_Product}",
+                            "${widget.new_price_Product} UZS",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -127,7 +128,7 @@ class _CartItemState extends State<CartItem> {
                           Icon(
                             Icons.arrow_downward,
                             color: Colors.green,
-                            size: 20,
+                            size: 18,
                           ),
                           Text(
                             "${commonViewModel.getDiscountPercentage(widget.old_price_Product, widget.new_price_Product)}%",
@@ -166,7 +167,7 @@ class _CartItemState extends State<CartItem> {
                   width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey.shade300,
+                    color: Colors.pinkAccent,
                   ),
                   child: IconButton(
                     onPressed: () {
@@ -186,7 +187,7 @@ class _CartItemState extends State<CartItem> {
                   width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey.shade300,
+                    color: Colors.pinkAccent,
                   ),
                   child: IconButton(
                     onPressed: () {
@@ -199,7 +200,7 @@ class _CartItemState extends State<CartItem> {
                 Text("Total:"),
                 SizedBox(width: 8),
                 Text(
-                  "💲${widget.new_price_Product * quantityCount}",
+                  "${widget.new_price_Product * quantityCount} uzs",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                 ),
               ],

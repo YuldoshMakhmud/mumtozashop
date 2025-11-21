@@ -18,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
     Color? iconColor,
   }) {
     return ListTile(
-      leading: Icon(icon, color: iconColor ?? Colors.green.shade600),
+      leading: Icon(icon, color: iconColor ?? Colors.pinkAccent),
       title: Text(
         title,
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -36,7 +36,11 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Profile", style: TextStyle(fontSize: 22)),
+        title: const Text(
+          "My Profile",
+          style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
+        ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -50,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Colors.green.shade400, Colors.green.shade600],
+                    colors: [Colors.pink, Colors.pinkAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -67,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Icon(
                         Icons.person,
                         size: 40,
-                        color: Colors.green.shade600,
+                        color: Colors.pinkAccent,
                       ),
                     ),
 
@@ -113,12 +117,26 @@ class _ProfilePageState extends State<ProfilePage> {
 
             SizedBox(height: 20),
 
+            buildItem(
+              icon: Icons.local_shipping_outlined,
+              title: "Orders",
+              onTap: () => Navigator.pushNamed(context, "/orders"),
+            ),
+
+            dividerWidget(),
+
+            buildItem(
+              icon: Icons.discount_outlined,
+              title: "Discount & Offers",
+              onTap: () => Navigator.pushNamed(context, "/coupons"),
+            ),
+
             dividerWidget(),
 
             buildItem(
               icon: Icons.logout_outlined,
               title: "Logout",
-              iconColor: Colors.red,
+              iconColor: Colors.grey,
               onTap: () async {
                 Provider.of<UserProvider>(
                   context,

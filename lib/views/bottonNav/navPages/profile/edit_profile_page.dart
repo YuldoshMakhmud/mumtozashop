@@ -34,7 +34,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Update Profile"),
+        title: Text(
+          "Update Profile",
+          style: TextStyle(color: Colors.pinkAccent),
+        ),
         scrolledUnderElevation: 0,
         forceMaterialTransparency: true,
       ),
@@ -121,7 +124,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.pinkAccent,
                       foregroundColor: Colors.white,
                     ),
                     child: Text(

@@ -18,7 +18,10 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your Cart", style: TextStyle(fontSize: 22)),
+        title: const Text(
+          "Your Cart",
+          style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
+        ),
         centerTitle: true,
       ),
       body: Consumer<CartProvider>(
@@ -111,7 +114,6 @@ class _CartPageState extends State<CartPage> {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.monetization_on, color: Colors.green),
                       const SizedBox(width: 4),
                       Text(
                         "Total: ${value.totalCost}",
@@ -129,7 +131,7 @@ class _CartPageState extends State<CartPage> {
                     icon: const Icon(Icons.arrow_forward),
                     label: const Text("Checkout"),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.pinkAccent,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 18,
