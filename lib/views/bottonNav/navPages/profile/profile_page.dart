@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/providers/user_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -29,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget dividerWidget() {
-    return Divider(thickness: 0.8, indent: 16, endIndent: 16);
+    return const Divider(thickness: 0.8, indent: 16, endIndent: 16);
   }
 
   @override
@@ -53,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   horizontal: 16,
                 ),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Colors.pink, Colors.pinkAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -65,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: Row(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 32,
                       backgroundColor: Colors.white,
                       child: Icon(
@@ -74,9 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.pinkAccent,
                       ),
                     ),
-
-                    SizedBox(width: 16),
-
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +88,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.white,
                             ),
                           ),
-
                           Text(
                             user.emailOfUser,
                             style: const TextStyle(
@@ -100,7 +98,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-
                     IconButton(
                       icon: const Icon(
                         Icons.edit_outlined,
@@ -115,14 +112,29 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             buildItem(
               icon: Icons.local_shipping_outlined,
               title: "Orders",
               onTap: () => Navigator.pushNamed(context, "/orders"),
             ),
+            dividerWidget(),
 
+            buildItem(
+              icon: Icons.policy_outlined,
+              title: "Terms & Policy",
+              onTap: () async {
+                final Uri url = Uri.parse(
+                  "https://sites.google.com/view/mumtozashop/home",
+                );
+                if (!await launchUrl(url, mode: LaunchMode.platformDefault)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Could not launch URL")),
+                  );
+                }
+              },
+            ),
             dividerWidget(),
 
             buildItem(
@@ -130,7 +142,6 @@ class _ProfilePageState extends State<ProfilePage> {
               title: "Discount & Offers",
               onTap: () => Navigator.pushNamed(context, "/coupons"),
             ),
-
             dividerWidget(),
 
             buildItem(
@@ -142,9 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   context,
                   listen: false,
                 ).declineProvider();
-
                 await FirebaseAuth.instance.signOut();
-
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   "/login",

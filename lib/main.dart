@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 import 'package:mumtozashop/providers/cart_provider.dart';
 import 'package:mumtozashop/providers/user_provider.dart';
 import 'package:mumtozashop/views/auth/check_user_status.dart';
@@ -18,10 +20,17 @@ import 'package:mumtozashop/views/products/show_products_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
+  await EasyLocalization.ensureInitialized(); // <-- easy_localization
 
-  runApp(const MyApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('uz'), Locale('ru')],
+      path: 'assets/translation',
+      fallbackLocale: const Locale('uz'),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,17 +40,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => UserProvider()),
-        ChangeNotifierProvider(create: (context) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
         title: 'Mumtoza shop',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Sen-VariableFont_wght',
-          colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFFFFF0F5)),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFFF0F5)),
           useMaterial3: true,
         ),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         routes: {
           "/": (context) => CheckUserStatus(),
           "/login": (context) => LoginPage(),

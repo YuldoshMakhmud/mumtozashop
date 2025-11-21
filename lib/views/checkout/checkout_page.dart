@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mumtozashop/viewModel/cart_view_model.dart';
 import 'package:mumtozashop/viewModel/order_view_model.dart';
@@ -45,8 +46,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   sendTelegramMessage(String message) async {
     final url = Uri.parse(
-      "[https://api.telegram.org/bot$_telegramBotToken/sendMessage?chat_id=$_chatId&text=$message](https://api.telegram.org/bot$_telegramBotToken/sendMessage?chat_id=$_chatId&text=$message)",
+      "https://api.telegram.org/bot$_telegramBotToken/sendMessage?chat_id=$_chatId&text=$message",
     );
+    await http.get(url);
+
     await http.get(url);
   }
 
@@ -118,15 +121,36 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "Bank Account",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Hisob raqam: 5614 6810 1284 4944 (UZCARD)\nYuldosheva",
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.copy),
+                                  onPressed: () {
+                                    Clipboard.setData(
+                                      const ClipboardData(
+                                        text: "5614 6810 1284 4944",
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          "Hisob raqam nusxalandi ✅",
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 8),
-                            Text("Account Number: 1234 5678 9012 3456"),
+
+                            const Text(
+                              "Izoh: Buyurtma O'tkazmasi tekshirilib bo'lgach \nBuyurtma qabul qilinadi",
+                            ),
                           ],
                         ),
                       ),
