@@ -11,4 +11,8 @@ class UserViewModel {
     return FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).snapshots();
   }
 
+  updateUserData({required Map<String, dynamic> userData}) async {
+    await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.uid).update(userData);
+  }
+
 }

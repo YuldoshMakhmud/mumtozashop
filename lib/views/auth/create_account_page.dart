@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mumtozashop/viewModel/auth_view_model.dart';
 
@@ -27,7 +28,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             children: [
               SizedBox(height: 60),
 
-              Image.asset("assets/images/image_signup.png"),
+              Image.asset("assets/images/splash.jpg"),
 
               SizedBox(height: 20),
 
@@ -35,20 +36,20 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                       "Sign Up",
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.w700,
                       ),
-                    ),
+                    ).tr(),
                     SizedBox(height: 4),
                     Text(
-                      "Create a new account and start Shopping.",
+                      "Create a new account and start Shopping.".tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16, color: Colors.grey),
-                    ),
+                    ).tr(),
                   ],
                 ),
               ),
@@ -138,10 +139,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.pinkAccent,
                     foregroundColor: Colors.white,
                   ),
-                  child: const Text("Sign Up", style: TextStyle(fontSize: 16)),
+                  child: Text("Sign Up", style: TextStyle(fontSize: 16)).tr(),
                 ),
               ),
 
@@ -150,7 +151,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Already have an account?"),
+                  const Text("Already have an account?").tr(),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, "/login");

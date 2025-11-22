@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/providers/user_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -18,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
     Color? iconColor,
   }) {
     return ListTile(
-      leading: Icon(icon, color: iconColor ?? Colors.green.shade600),
+      leading: Icon(icon, color: iconColor ?? Colors.pinkAccent),
       title: Text(
         title,
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -29,14 +31,18 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget dividerWidget() {
-    return Divider(thickness: 0.8, indent: 16, endIndent: 16);
+    return const Divider(thickness: 0.8, indent: 16, endIndent: 16);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Profile", style: TextStyle(fontSize: 22)),
+        title: Text(
+          "My Profile",
+          style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
+        ).tr(),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -49,8 +55,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   horizontal: 16,
                 ),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.green.shade400, Colors.green.shade600],
+                  gradient: const LinearGradient(
+                    colors: [Colors.pink, Colors.pinkAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -61,18 +67,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 child: Row(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 32,
                       backgroundColor: Colors.white,
                       child: Icon(
                         Icons.person,
                         size: 40,
-                        color: Colors.green.shade600,
+                        color: Colors.pinkAccent,
                       ),
                     ),
-
-                    SizedBox(width: 16),
-
+                    const SizedBox(width: 16),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +89,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.white,
                             ),
                           ),
-
                           Text(
                             user.emailOfUser,
                             style: const TextStyle(
@@ -96,14 +99,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-
                     IconButton(
                       icon: const Icon(
                         Icons.edit_outlined,
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        //Navigator.pushNamed(context, "/update_profile");
+                        Navigator.pushNamed(context, "/edit_profile");
                       },
                     ),
                   ],
@@ -111,22 +113,54 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
+            buildItem(
+              icon: Icons.local_shipping_outlined,
+              title: "Orders".tr(),
+              onTap: () => Navigator.pushNamed(context, "/orders"),
+            ),
+            dividerWidget(),
+            buildItem(
+              icon: Icons.support_agent,
+              title: "Support",
+              onTap: () => Navigator.pushNamed(context, "/support"),
+            ),
+            dividerWidget(),
+
+            buildItem(
+              icon: Icons.policy_outlined,
+              title: "Terms & Policy".tr(),
+              onTap: () async {
+                final Uri url = Uri.parse(
+                  "https://sites.google.com/view/mumtozashop/home",
+                );
+                if (!await launchUrl(url, mode: LaunchMode.platformDefault)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Could not launch URL")),
+                  );
+                }
+              },
+            ),
+            dividerWidget(),
+
+            buildItem(
+              icon: Icons.discount_outlined,
+              title: "Discount & Offers".tr(),
+              onTap: () => Navigator.pushNamed(context, "/coupons"),
+            ),
             dividerWidget(),
 
             buildItem(
               icon: Icons.logout_outlined,
-              title: "Logout",
-              iconColor: Colors.red,
+              title: "Logout".tr(),
+              iconColor: Colors.grey,
               onTap: () async {
                 Provider.of<UserProvider>(
                   context,
                   listen: false,
                 ).declineProvider();
-
                 await FirebaseAuth.instance.signOut();
-
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   "/login",

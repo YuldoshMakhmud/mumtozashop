@@ -1,11 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/providers/user_provider.dart';
 
 import 'navPages/cart_page.dart';
-import 'navPages/default_page.dart';
-import 'navPages/orders_page.dart';
-import 'navPages/profile_page.dart';
+import 'navPages/defaultPage/default_page.dart';
+import 'navPages/orders/orders_page.dart';
+import 'navPages/profile/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,7 +31,6 @@ class _HomePageState extends State<HomePage> {
             chosenIndex = index;
           });
         },
-
         selectedItemColor: Color(0xFFFFF0F5),
         unselectedItemColor: Colors.grey,
         showSelectedLabels: true,
@@ -39,22 +39,22 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.home_outlined),
-            label: "Home",
+            label: "Home".tr(),
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.local_shipping_outlined),
-            label: "Orders",
+            label: "Orders".tr(),
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.shopping_cart_outlined),
-            label: "Cart",
+            label: "Cart".tr(),
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.manage_accounts_outlined),
-            label: "Profile",
+            label: "Profile".tr(),
           ),
         ],
       ),
