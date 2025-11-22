@@ -121,6 +121,12 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () => Navigator.pushNamed(context, "/orders"),
             ),
             dividerWidget(),
+            buildItem(
+              icon: Icons.support_agent,
+              title: "Support",
+              onTap: () => Navigator.pushNamed(context, "/support"),
+            ),
+            dividerWidget(),
 
             buildItem(
               icon: Icons.policy_outlined,

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mumtozashop/views/bottonNav/navPages/profile/support_page.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
           "/cart": (context) => CartPage(),
           "/checkout": (context) => CheckoutPage(),
           "/edit_profile": (context) => EditProfilePage(),
+          "/support": (context) => SupportPage(),
           "/orders": (context) => OrdersPage(),
           "/order_details": (context) => OrderDetailsPage(),
         },

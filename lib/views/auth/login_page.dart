@@ -119,8 +119,8 @@ class _LoginPageState extends State<LoginPage> {
                           backgroundColor: Colors.pinkAccent,
                           foregroundColor: Colors.white,
                         ),
-                        child: const Text(
-                          "Login",
+                        child: Text(
+                          "Login".tr(),
                           style: TextStyle(fontSize: 16),
                         ),
                       ),

@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mumtozashop/service/connectivity_service.dart';
+import 'package:mumtozashop/views/no_internet/no_internet.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/viewModel/common_view_model.dart';
 import '../../models/cart_model.dart';
@@ -17,6 +19,21 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   CommonViewModel commonViewModel = CommonViewModel();
+  ConnectivityService connectivityService = ConnectivityService();
+
+  // Internet tekshirish va xabar ko'rsatish funksiyasi
+  Future<bool> checkInternetAndShowDialog() async {
+    bool hasInternet = await connectivityService.hasInternetConnection();
+    if (!hasInternet) {
+      showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) => NoInternetPage(),
+      );
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,11 +189,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       bottomNavigationBar: args.maxQuantityProduct != 0
           ? Row(
               children: [
+                // ADD TO CART BUTTON
                 SizedBox(
                   height: 60,
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: ElevatedButton.icon(
-                    onPressed: () {
+                    onPressed: () async {
+                      // Internet tekshirish
+                      bool hasInternet = await checkInternetAndShowDialog();
+                      if (!hasInternet) return;
+
+                      // Savatga qo'shish
                       Provider.of<CartProvider>(
                         context,
                         listen: false,
@@ -203,11 +226,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
                 ),
+                // BUY NOW BUTTON
                 SizedBox(
                   height: 60,
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: ElevatedButton.icon(
-                    onPressed: () {
+                    onPressed: () async {
+                      // Internet tekshirish
+                      bool hasInternet = await checkInternetAndShowDialog();
+                      if (!hasInternet) return;
+
+                      // Savatga qo'shish
                       Provider.of<CartProvider>(
                         context,
                         listen: false,
@@ -215,6 +244,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         CartModel(productID: args.idProduct, quantity: 1),
                       );
 
+                      // Checkout sahifasiga o'tish
                       Navigator.pushNamed(context, "/checkout");
                     },
                     icon: const Icon(Icons.flash_on_outlined),
