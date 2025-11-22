@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/viewModel/common_view_model.dart';
@@ -26,7 +27,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         title: Text(
           "Product Details",
           style: TextStyle(color: Colors.pinkAccent),
-        ),
+        ).tr(),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -75,7 +76,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   Row(
                     children: [
                       Text(
-                        "${args.old_price_Product} UZS",
+                        "${args.formattedOldPrice} UZS",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -85,7 +86,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ),
                       SizedBox(width: 10),
                       Text(
-                        "${args.new_price_Product} UZS",
+                        "${args.formattedNewPrice} UZS",
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w800,
@@ -104,7 +105,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ),
                     ],
                   ),
-
                   SizedBox(height: 14),
 
                   /// Stock Status
@@ -185,17 +185,17 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       );
 
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
+                        SnackBar(
                           content: Text(
                             "Item Added to your cart.",
                             style: TextStyle(color: Colors.white),
-                          ),
+                          ).tr(),
                           backgroundColor: Color(0xFFDD5D79),
                         ),
                       );
                     },
                     icon: const Icon(Icons.add_shopping_cart_outlined),
-                    label: const Text("Add to Cart"),
+                    label: Text("Add to Cart").tr(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pinkAccent,
                       foregroundColor: Colors.white,
@@ -218,7 +218,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       Navigator.pushNamed(context, "/checkout");
                     },
                     icon: const Icon(Icons.flash_on_outlined),
-                    label: const Text("Buy Now"),
+                    label: Text("Buy Now").tr(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white70,
                       foregroundColor: Colors.pinkAccent,

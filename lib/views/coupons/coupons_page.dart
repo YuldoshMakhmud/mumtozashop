@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mumtozashop/viewModel/coupon_view_model.dart';
 
@@ -17,7 +18,10 @@ class _CouponsPageState extends State<CouponsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Discount Coupons", style: TextStyle(fontSize: 22)),
+        title: Text(
+          "Discount Coupons".tr(),
+          style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
+        ),
       ),
       body: StreamBuilder(
         stream: couponViewModel.fetchCoupons(),
@@ -38,7 +42,10 @@ class _CouponsPageState extends State<CouponsPage> {
                     child: Card(
                       elevation: 6,
                       child: ListTile(
-                        leading: Icon(Icons.discount_outlined),
+                        leading: Icon(
+                          Icons.discount_outlined,
+                          color: Colors.pinkAccent,
+                        ),
                         title: Text(discountsList[index].codeCoupon),
                         subtitle: Text(discountsList[index].descCoupon),
                       ),
@@ -48,7 +55,7 @@ class _CouponsPageState extends State<CouponsPage> {
               );
             }
           } else {
-            return CircularProgressIndicator(color: Colors.green);
+            return CircularProgressIndicator(color: Colors.pinkAccent);
           }
         },
       ),

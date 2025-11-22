@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class ProductModel {
-
   String nameProduct;
   String descriptionProduct;
   String imageProduct;
@@ -22,7 +22,7 @@ class ProductModel {
     required this.maxQuantityProduct,
   });
 
-  factory ProductModel.fromJson(Map<String,dynamic> json,String docID){
+  factory ProductModel.fromJson(Map<String, dynamic> json, String docID) {
     return ProductModel(
       nameProduct: json["name"] ?? "",
       descriptionProduct: json["desc"] ?? "no description",
@@ -34,9 +34,28 @@ class ProductModel {
       idProduct: docID ?? "",
     );
   }
-
-  static List<ProductModel> fromJsonList(List<QueryDocumentSnapshot> list) {
-    return list.map((product) => ProductModel.fromJson(product.data() as Map<String, dynamic>, product.id)).toList();
+  String get formattedOldPrice {
+    return NumberFormat(
+      '#,###',
+      'en_US',
+    ).format(old_price_Product).replaceAll(',', ' ');
   }
 
+  String get formattedNewPrice {
+    return NumberFormat(
+      '#,###',
+      'en_US',
+    ).format(new_price_Product).replaceAll(',', ' ');
+  }
+
+  static List<ProductModel> fromJsonList(List<QueryDocumentSnapshot> list) {
+    return list
+        .map(
+          (product) => ProductModel.fromJson(
+            product.data() as Map<String, dynamic>,
+            product.id,
+          ),
+        )
+        .toList();
+  }
 }

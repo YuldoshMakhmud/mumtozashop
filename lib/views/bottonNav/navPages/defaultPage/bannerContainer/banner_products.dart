@@ -47,7 +47,7 @@ class _BannerProductsState extends State<BannerProducts> {
     int random = Random().nextInt(2);
 
     List<String> quotes = [
-      "Grab it for just 💲$price",
+      "Grab it for just $price UZS",
       "Enjoy discounts of up to $discountPercentage%",
     ];
 
@@ -169,7 +169,7 @@ class _BannerProductsState extends State<BannerProducts> {
             );
           }
         } else {
-          return CircularProgressIndicator(color: Colors.green);
+          return CircularProgressIndicator(color: Colors.pinkAccent);
         }
       },
     );

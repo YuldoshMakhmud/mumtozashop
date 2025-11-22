@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../viewModel/auth_view_model.dart';
@@ -24,19 +25,19 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/images/image_login.png"),
+              Image.asset("assets/images/splash.jpg"),
 
-              SizedBox(height: 20),
+              SizedBox(height: 30),
 
               Text(
-                "Welcome Back",
+                "Welcome Back".tr(),
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
               ),
 
               SizedBox(height: 6),
 
               Text(
-                "Login to continue",
+                "Login to continue".tr(),
                 style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
               ),
 
@@ -49,8 +50,9 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
-                        validator: (value) =>
-                            value!.isEmpty ? "Email cannot be empty." : null,
+                        validator: (value) => value!.isEmpty
+                            ? "Email cannot be empty.".tr()
+                            : null,
                         controller: emailTextEditingController,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -65,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
                         validator: (value) => value!.length < 8
-                            ? "Password should have at least 8 characters."
+                            ? "Password should have at least 8 characters.".tr()
                             : null,
                         controller: passwordTextEditingController,
                         obscureText: true,
@@ -114,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
+                          backgroundColor: Colors.pinkAccent,
                           foregroundColor: Colors.white,
                         ),
                         child: const Text(
@@ -129,12 +131,12 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?"),
+                        Text("Don't have an account?".tr()),
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, "/signup");
                           },
-                          child: const Text("Sign Up"),
+                          child: const Text("Sign Up").tr(),
                         ),
                       ],
                     ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mumtozashop/viewModel/order_view_model.dart';
@@ -54,10 +55,10 @@ class _OrdersPageState extends State<OrdersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "My Orders",
           style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
-        ),
+        ).tr(),
         centerTitle: true,
       ),
       body: StreamBuilder(
@@ -69,11 +70,11 @@ class _OrdersPageState extends State<OrdersPage> {
             );
 
             if (orders.isEmpty) {
-              return const Center(
+              return Center(
                 child: Text(
                   "You haven't placed any order yet.",
                   style: TextStyle(fontSize: 16, color: Colors.black54),
-                ),
+                ).tr(),
               );
             }
 

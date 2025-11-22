@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mumtozashop/views/bottonNav/navPages/orders/update_order.dart';
@@ -70,7 +71,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Order Details"), centerTitle: true),
+      appBar: AppBar(title: Text("Order Details").tr(), centerTitle: true),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -79,7 +80,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             sectionCardUI(
               Icons.location_on,
               Colors.pinkAccent,
-              "Delivery Information",
+              "Delivery Information".tr(),
               [
                 "Order ID: ${args.id_order}",
                 "Ordered on: ${dateTimeFormat.format(DateTime.fromMillisecondsSinceEpoch(args.created_at))}",
@@ -94,7 +95,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             sectionCardUI(
               Icons.shopping_bag,
               Colors.orange,
-              "Ordered Items",
+              "Ordered Items".tr(),
               [],
               child: Column(
                 children: args.productsList.map((e) {
@@ -146,7 +147,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
             sectionCardUI(
               Icons.payments,
               Colors.pinkAccent,
-              "Payment Overview",
+              "Payment Overview".tr(),
               [
                 "Discount: ${args.discount} UZS",
                 "Total: ${args.total} UZS",
@@ -161,10 +162,10 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.edit, color: Colors.white),
-                  label: const Text(
+                  label: Text(
                     "Update My Order",
                     style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
+                  ).tr(),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(

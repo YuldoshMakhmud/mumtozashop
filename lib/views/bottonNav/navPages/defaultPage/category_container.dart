@@ -42,7 +42,7 @@ class _CategoryContainerState extends State<CategoryContainer> {
             );
           }
         } else {
-          return CircularProgressIndicator(color: Colors.green);
+          return CircularProgressIndicator(color: Colors.pinkAccent);
         }
       },
     );

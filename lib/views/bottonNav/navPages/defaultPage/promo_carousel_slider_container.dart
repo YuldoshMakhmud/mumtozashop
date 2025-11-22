@@ -51,7 +51,7 @@ class _PromoCarouselSliderContainerState
               }).toList(),
               options: CarouselOptions(
                 autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 2),
+                autoPlayInterval: const Duration(seconds: 4),
                 aspectRatio: 16 / 8,
                 viewportFraction: 1,
                 enlargeCenterPage: true,
@@ -60,7 +60,9 @@ class _PromoCarouselSliderContainerState
             );
           }
         } else {
-          return Center(child: CircularProgressIndicator(color: Colors.green));
+          return Center(
+            child: CircularProgressIndicator(color: Colors.pinkAccent),
+          );
         }
       },
     );

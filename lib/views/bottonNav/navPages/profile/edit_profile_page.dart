@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/viewModel/user_view_model.dart';
@@ -37,7 +38,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         title: Text(
           "Update Profile",
           style: TextStyle(color: Colors.pinkAccent),
-        ),
+        ).tr(),
         scrolledUnderElevation: 0,
         forceMaterialTransparency: true,
       ),
@@ -78,7 +79,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   maxLines: 3,
                   controller: addressTextEditingController,
                   decoration: InputDecoration(
-                    labelText: "Address",
+                    labelText: "Address".tr(),
                     hintText: "Address",
                     border: OutlineInputBorder(),
                   ),
@@ -91,7 +92,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 TextFormField(
                   controller: phoneTextEditingController,
                   decoration: InputDecoration(
-                    labelText: "Phone",
+                    labelText: "Phone".tr(),
                     hintText: "Phone",
                     border: OutlineInputBorder(),
                   ),
@@ -119,7 +120,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         Navigator.pop(context);
 
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Profile Updated")),
+                          SnackBar(content: Text("Profile Updated").tr()),
                         );
                       }
                     },

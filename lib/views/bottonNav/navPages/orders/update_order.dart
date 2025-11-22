@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mumtozashop/models/order_model.dart';
 import 'package:mumtozashop/viewModel/order_view_model.dart';
@@ -48,7 +49,8 @@ class _UpdateOrderState extends State<UpdateOrder> {
               context: context,
               builder: (context) => ConfirmActionDialog(
                 dialogBodyText:
-                    "Once canceled, this order cannot be changed. To receive these items, you’ll need to place a new order.",
+                    "Once canceled, this order cannot be changed. To receive these items, you’ll need to place a new order."
+                        .tr(),
                 onYesCallback: () async {
                   await orderViewModel.updateOrderStatus(
                     docId: widget.orderData.id_order,
@@ -56,8 +58,8 @@ class _UpdateOrderState extends State<UpdateOrder> {
                   );
 
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Order Cancelled Successfully."),
+                    SnackBar(
+                      content: Text("Order Cancelled Successfully.").tr(),
                     ),
                   );
 

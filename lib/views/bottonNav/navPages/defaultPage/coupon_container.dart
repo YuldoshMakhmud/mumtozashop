@@ -36,7 +36,10 @@ class _CouponContainerState extends State<CouponContainer> {
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.purple.shade100, Colors.green.shade200],
+                  colors: [
+                    Colors.pinkAccent,
+                    const Color.fromARGB(255, 227, 176, 193),
+                  ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -51,7 +54,7 @@ class _CouponContainerState extends State<CouponContainer> {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.local_offer, color: Colors.blueAccent, size: 32),
+                  Icon(Icons.local_offer, color: Color(0xFFFFF5E1), size: 32),
                   SizedBox(width: 16),
                   Expanded(
                     child: Column(
@@ -61,7 +64,7 @@ class _CouponContainerState extends State<CouponContainer> {
                           coupon.codeCoupon,
                           style: TextStyle(
                             fontSize: 18,
-                            color: Colors.blue.shade900,
+                            color: Color(0xFFFFF5E1),
                           ),
                         ),
                         SizedBox(height: 4),
@@ -69,7 +72,7 @@ class _CouponContainerState extends State<CouponContainer> {
                           coupon.descCoupon,
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.blue.shade900.withValues(alpha: 150),
+                            color: Color(0xFFFFF5E1),
                           ),
                         ),
                       ],
@@ -78,14 +81,14 @@ class _CouponContainerState extends State<CouponContainer> {
                   Icon(
                     Icons.arrow_forward_ios,
                     size: 16,
-                    color: Colors.blueAccent,
+                    color: Colors.pinkAccent,
                   ),
                 ],
               ),
             ),
           );
         } else {
-          return const CircularProgressIndicator(color: Colors.green);
+          return const CircularProgressIndicator(color: Colors.pinkAccent);
         }
       },
     );

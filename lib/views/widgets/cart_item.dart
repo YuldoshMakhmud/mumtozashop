@@ -36,9 +36,7 @@ class _CartItemState extends State<CartItem> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     quantityCount = widget.chosenQuantity;
   }
 
@@ -88,7 +86,10 @@ class _CartItemState extends State<CartItem> {
                 SizedBox(
                   height: 81,
                   width: 81,
-                  child: Image.memory(widget.imageBytes, fit: BoxFit.cover),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.memory(widget.imageBytes, fit: BoxFit.cover),
+                  ),
                 ),
                 SizedBox(width: 10),
                 Expanded(
@@ -105,35 +106,40 @@ class _CartItemState extends State<CartItem> {
                         ),
                       ),
                       SizedBox(height: 6),
+                      // FIXED: Price row with proper constraints
                       Row(
                         children: [
-                          SizedBox(width: 2),
                           Text(
                             "${widget.old_price_Product} UZS",
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                               decoration: TextDecoration.lineThrough,
+                              color: Colors.grey.shade600,
                             ),
                           ),
-                          SizedBox(width: 8),
-                          Text(
-                            "${widget.new_price_Product} UZS",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                          SizedBox(width: 6),
+                          Flexible(
+                            child: Text(
+                              "${widget.new_price_Product} UZS",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          SizedBox(width: 8),
+                          SizedBox(width: 4),
                           Icon(
                             Icons.arrow_downward,
                             color: Colors.green,
-                            size: 18,
+                            size: 16,
                           ),
+                          SizedBox(width: 2),
                           Text(
                             "${commonViewModel.getDiscountPercentage(widget.old_price_Product, widget.new_price_Product)}%",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.green,
                             ),
@@ -155,53 +161,78 @@ class _CartItemState extends State<CartItem> {
               ],
             ),
             SizedBox(height: 16),
+            // FIXED: Bottom row with better spacing
             Row(
               children: [
                 Text(
                   "Quantity:",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(width: 8),
                 Container(
-                  height: 40,
-                  width: 40,
+                  height: 38,
+                  width: 38,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.pinkAccent,
                   ),
                   child: IconButton(
+                    padding: EdgeInsets.zero,
                     onPressed: () {
                       incrementQuantity(widget.maxQuantity);
                     },
-                    icon: Icon(Icons.add),
+                    icon: Icon(Icons.add, size: 20, color: Colors.white),
                   ),
                 ),
                 SizedBox(width: 8),
                 Text(
                   "$quantityCount",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(width: 8),
                 Container(
-                  height: 40,
-                  width: 40,
+                  height: 38,
+                  width: 38,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.pinkAccent,
                   ),
                   child: IconButton(
+                    padding: EdgeInsets.zero,
                     onPressed: () {
                       decrementQuantity();
                     },
-                    icon: Icon(Icons.remove),
+                    icon: Icon(Icons.remove, size: 20, color: Colors.white),
                   ),
                 ),
                 Spacer(),
-                Text("Total:"),
-                SizedBox(width: 8),
-                Text(
-                  "${widget.new_price_Product * quantityCount} uzs",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                // FIXED: Total section with flexible layout
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Total:",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade700,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Text(
+                        "${widget.new_price_Product * quantityCount} UZS",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black87,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

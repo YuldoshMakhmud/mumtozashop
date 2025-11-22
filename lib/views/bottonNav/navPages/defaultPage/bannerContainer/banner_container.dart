@@ -71,13 +71,13 @@ class _BannerContainerState extends State<BannerContainer> {
                     ],
                   );
                 } else {
-                  return Container();
+                  return Container(color: Colors.pinkAccent);
                 }
               },
             );
           }
         } else {
-          return CircularProgressIndicator(color: Colors.green);
+          return CircularProgressIndicator(color: Colors.pinkAccent);
         }
       },
     );

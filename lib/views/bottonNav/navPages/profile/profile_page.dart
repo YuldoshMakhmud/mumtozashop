@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,10 +38,10 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "My Profile",
           style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
-        ),
+        ).tr(),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -116,14 +117,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
             buildItem(
               icon: Icons.local_shipping_outlined,
-              title: "Orders",
+              title: "Orders".tr(),
               onTap: () => Navigator.pushNamed(context, "/orders"),
             ),
             dividerWidget(),
 
             buildItem(
               icon: Icons.policy_outlined,
-              title: "Terms & Policy",
+              title: "Terms & Policy".tr(),
               onTap: () async {
                 final Uri url = Uri.parse(
                   "https://sites.google.com/view/mumtozashop/home",
@@ -139,14 +140,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
             buildItem(
               icon: Icons.discount_outlined,
-              title: "Discount & Offers",
+              title: "Discount & Offers".tr(),
               onTap: () => Navigator.pushNamed(context, "/coupons"),
             ),
             dividerWidget(),
 
             buildItem(
               icon: Icons.logout_outlined,
-              title: "Logout",
+              title: "Logout".tr(),
               iconColor: Colors.grey,
               onTap: () async {
                 Provider.of<UserProvider>(

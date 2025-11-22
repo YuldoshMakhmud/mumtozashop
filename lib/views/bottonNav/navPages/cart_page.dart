@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/views/widgets/cart_item.dart';
@@ -18,10 +19,10 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Your Cart",
           style: TextStyle(fontSize: 22, color: Colors.pinkAccent),
-        ),
+        ).tr(),
         centerTitle: true,
       ),
       body: Consumer<CartProvider>(
@@ -40,18 +41,18 @@ class _CartPageState extends State<CartPage> {
                       color: Colors.grey.shade400,
                     ),
                     const SizedBox(height: 12),
-                    const Text(
+                    Text(
                       "Your cart is empty.",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
                       ),
-                    ),
+                    ).tr(),
                     const SizedBox(height: 6),
                     Text(
                       "you haven’t added any product to your cart yet.",
                       style: TextStyle(color: Colors.grey.shade500),
-                    ),
+                    ).tr(),
                   ],
                 ),
               );
@@ -82,7 +83,7 @@ class _CartPageState extends State<CartPage> {
                   child: Text(
                     "your cart is empty.",
                     style: TextStyle(fontSize: 16),
-                  ),
+                  ).tr(),
                 );
               }
             }
@@ -129,7 +130,7 @@ class _CartPageState extends State<CartPage> {
                       Navigator.pushNamed(context, "/checkout");
                     },
                     icon: const Icon(Icons.arrow_forward),
-                    label: const Text("Checkout"),
+                    label: Text("Checkout").tr(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pinkAccent,
                       foregroundColor: Colors.white,

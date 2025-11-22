@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mumtozashop/providers/user_provider.dart';
@@ -38,22 +39,22 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.home_outlined),
-            label: "Home",
+            label: "Home".tr(),
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.local_shipping_outlined),
-            label: "Orders",
+            label: "Orders".tr(),
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.shopping_cart_outlined),
-            label: "Cart",
+            label: "Cart".tr(),
           ),
           BottomNavigationBarItem(
             backgroundColor: Color(0xFFDD5D79),
             icon: Icon(Icons.manage_accounts_outlined),
-            label: "Profile",
+            label: "Profile".tr(),
           ),
         ],
       ),
